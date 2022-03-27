@@ -60,14 +60,16 @@ class CreateCarForm extends React.Component {
             isLoading: true
         });
 
-        await fetch('https://localhost:7011/cars', {
+        await fetch('http://localhost:5558/cars', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
-        })
+        });
+
+        this.props.setRefetchList(true);
 
         this.setState({
             ...this.state,

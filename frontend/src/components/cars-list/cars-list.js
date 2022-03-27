@@ -12,7 +12,19 @@ class CarsList extends React.Component {
     }
 
     async componentDidMount() {
-        const response = await fetch('https://localhost:7011/cars/list')
+        await this.fetchCarsList();
+    }
+
+    async componentDidUpdate() {
+        if (this.props.shouldRefetchList) {
+            await this.fetchCarsList();
+            this.props.setRefetchList(false);
+        }
+    }
+
+    async fetchCarsList() {
+        console.log()
+        const response = await fetch('http://localhost:5558/cars/list')
         this.setState({
             cars: await response.json()
         });

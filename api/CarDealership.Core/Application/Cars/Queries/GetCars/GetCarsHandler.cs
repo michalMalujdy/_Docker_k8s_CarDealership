@@ -15,6 +15,7 @@ public class GetCarsHandler : IRequestHandler<GetCarsQuery, List<GetCarsResult>>
         => await _db.Cars
             .Select(x => new GetCarsResult
             {
+                Id = x.Id,
                 Make = x.Make,
                 Model = x.Model,
                 RegistrationNumber = x.RegistrationNumber

@@ -1,6 +1,8 @@
 ﻿import React from "react";
+import { Card } from 'antd';
+import './cars-list.css';
 
-class Cars extends React.Component {
+class CarsList extends React.Component {
     constructor(props) {
         super(props);
 
@@ -18,13 +20,11 @@ class Cars extends React.Component {
 
     render() {
         return this.state.cars.map(car =>
-            <div>
-                <div>Make: {car.make}</div>
-                <div>Model: {car.model}</div>
-                <div>Registration: {car.registrationNumber}</div>
-            </div>
+            <Card title={`${car.make} ${car.model}`} key={car.id} className='cars-list_card'>
+                <p>Registration: {car.registrationNumber}</p>
+            </Card>
         )
     }
 }
 
-export default Cars;
+export default CarsList;

@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 using CarDealership.Core.Persistence;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace CarDealership.Core;
 
@@ -11,10 +11,10 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<Db>(options =>
-            options.UseSqlServer(
-                configuration.GetConnectionString("DefaultConnection"),
-                b => b.MigrationsAssembly(typeof(Db).Assembly.FullName)));
+        using var serviceProvider = services.BuildServiceProvider();
+        var logger = serviceProvider.GetRequiredService<ILogger<Db>>();
+
+        DbInitializer.ConfigureDb(services, configuration, logger);
 
         services.AddMediatR(Assembly.GetExecutingAssembly());
 

@@ -1,6 +1,10 @@
 using CarDealership.Core;
+using CarDealership.Core.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Program>>();
+logger.LogInformation("App is starting");
 
 builder.Services.AddCore(builder.Configuration);
 
@@ -10,21 +14,23 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(builder =>
+    options.AddDefaultPolicy(corsPolicyBuilder =>
     {
-        builder.WithOrigins("http://localhost:3000");
+        corsPolicyBuilder.WithOrigins("http://localhost:3000");
+        corsPolicyBuilder.WithHeaders("Content-Type");
     });
 });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using (var db = builder.Services.BuildServiceProvider().GetRequiredService<Db>())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    DbInitializer.RunMigrations(db, logger);
+    DbInitializer.SeedDb(db, logger);
 }
 
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseCors();
 app.UseAuthorization();

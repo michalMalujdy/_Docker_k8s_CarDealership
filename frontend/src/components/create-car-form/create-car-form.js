@@ -1,81 +1,38 @@
-﻿import React from "react";
+﻿import React, {useState} from "react";
 import { Form, Input, Button } from 'antd';
 import './create-car-form.css';
+import {useAddCar} from "../../customHooks/useAddCar";
 
-class CreateCarForm extends React.Component {
-    constructor(props) {
-        super(props);
+const CreateCarForm = ({setShouldRefetchList}) => {
+    const [make, setMake] = useState('');
+    const [model, setModel] = useState('');
+    const [registrationNumber, setRegistrationNumber] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const {addCar} = useAddCar({make, model, registrationNumber});
 
-        this.state = {
-            make: '',
-            model: '',
-            registrationNumber: '',
-            isLoading: false
-        };
+    const onSubmit = async () => {
+        setIsLoading(true);
+        await addCar();
+        setShouldRefetchList(true);
+        setIsLoading(false);
     }
 
-    render() {
-        return (
-            <Form className="create-car-form">
-                <Form.Item label="Make">
-                    <Input placeholder="E.g. Ford" onInput={this.setMake} />
-                </Form.Item>
-                <Form.Item label="Model">
-                    <Input placeholder="E.g. Mondeo" onInput={this.setModel} />
-                </Form.Item>
-                <Form.Item label="RegistrationNumber">
-                    <Input placeholder="E.g. KLI 213064" onInput={this.setRegistrationNumber} />
-                </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" onClick={this.onSubmit} loading={this.state.isLoading}>Create car</Button>
-                </Form.Item>
-            </Form>
-        );
-    }
-
-    setMake = (event) => {
-        this.setState({
-            ...this.state,
-            make: event.target.value
-        });
-    }
-
-    setModel = (event) => {
-        this.setState({
-            ...this.state,
-            model: event.target.value
-        });
-    }
-
-    setRegistrationNumber = (event) => {
-        this.setState({
-            ...this.state,
-            registrationNumber: event.target.value
-        });
-    }
-
-    onSubmit = async () => {
-        this.setState({
-            ...this.state,
-            isLoading: true
-        });
-
-        await fetch('http://localhost:5558/cars', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state)
-        });
-
-        this.props.setRefetchList(true);
-
-        this.setState({
-            ...this.state,
-            isLoading: false
-        });
-    }
-}
+    return (
+        <Form className="create-car-form">
+            <Form.Item label="Make">
+                <Input placeholder="E.g. Ford" value={make} onChange={(e) => setMake(e.target.value)} />
+            </Form.Item>
+            <Form.Item label="Model">
+                <Input placeholder="E.g. Mondeo" value={model} onChange={e => setModel(e.target.value)} />
+            </Form.Item>
+            <Form.Item label="RegistrationNumber">
+                <Input placeholder="E.g. KLI 213064" value={registrationNumber} onChange={e => setRegistrationNumber(e.target.value)} />
+            </Form.Item>
+            <Form.Item>
+                <Button type="primary" htmlType="submit" onClick={onSubmit} loading={isLoading}>Create car</Button>
+            </Form.Item>
+        </Form>
+    );
+};
 
 export default CreateCarForm;

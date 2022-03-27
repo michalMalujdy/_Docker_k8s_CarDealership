@@ -1,42 +1,32 @@
-﻿import React from "react";
+﻿import React, {useEffect, useState} from "react";
 import { Card } from 'antd';
 import './cars-list.css';
 
-class CarsList extends React.Component {
-    constructor(props) {
-        super(props);
+const CarsList = ({shouldRefetchList, setShouldRefetchList}) => {
+    const [cars, setCars] = useState([]);
 
-        this.state = {
-            cars: []
-        };
-    }
+    useEffect(async () => {
+        await fetchCarsList();
+    }, []);
 
-    async componentDidMount() {
-        await this.fetchCarsList();
-    }
-
-    async componentDidUpdate(prevProps) {
-        if (prevProps.shouldRefetchList !== this.props.shouldRefetchList && this.props.shouldRefetchList) {
-            await this.fetchCarsList();
-            this.props.setRefetchList(false);
+    useEffect(async () => {
+        if (shouldRefetchList) {
+            await fetchCarsList();
+            setShouldRefetchList(true);
         }
-    }
+    }, [shouldRefetchList]);
 
-    async fetchCarsList() {
+    const fetchCarsList = async () => {
         console.log()
-        const response = await fetch('http://localhost:5558/cars/list')
-        this.setState({
-            cars: await response.json()
-        });
+        const response = await fetch('http://localhost:5558/cars/list');
+        setCars(await response.json());
     }
 
-    render() {
-        return this.state.cars.map(car =>
-            <Card title={`${car.make} ${car.model}`} key={car.id} className='cars-list_card'>
-                <p>Registration: {car.registrationNumber}</p>
-            </Card>
-        )
-    }
-}
+    return cars.map(car =>
+        <Card title={`${car.make} ${car.model}`} key={car.id} className='cars-list_card'>
+            <p>Registration: {car.registrationNumber}</p>
+        </Card>
+    )
+};
 
 export default CarsList;

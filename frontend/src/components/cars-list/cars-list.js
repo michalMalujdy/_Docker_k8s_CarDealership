@@ -15,8 +15,8 @@ class CarsList extends React.Component {
         await this.fetchCarsList();
     }
 
-    async componentDidUpdate() {
-        if (this.props.shouldRefetchList) {
+    async componentDidUpdate(prevProps) {
+        if (prevProps.shouldRefetchList !== this.props.shouldRefetchList && this.props.shouldRefetchList) {
             await this.fetchCarsList();
             this.props.setRefetchList(false);
         }

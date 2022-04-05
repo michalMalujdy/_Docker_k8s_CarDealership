@@ -17,6 +17,7 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(corsPolicyBuilder =>
     {
         corsPolicyBuilder.WithOrigins("http://localhost:3000");
+        corsPolicyBuilder.WithOrigins("http://localhost:5557");
         corsPolicyBuilder.WithHeaders("Content-Type");
     });
 });
@@ -31,7 +32,6 @@ using (var db = builder.Services.BuildServiceProvider().GetRequiredService<Db>()
 
 app.UseSwagger();
 app.UseSwaggerUI();
-app.UseHttpsRedirection();
 app.UseCors();
 app.UseAuthorization();
 app.MapControllers();

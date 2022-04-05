@@ -17,3 +17,15 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
       - ms-sql-server
+  car-dealership-frontend:
+    stdin_open: true
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.development
+    ports:
+      - '3000:3000'
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    depends_on:
+      - car-dealership-api

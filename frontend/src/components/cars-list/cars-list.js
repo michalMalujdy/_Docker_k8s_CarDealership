@@ -22,11 +22,17 @@ const CarsList = ({shouldRefetchList, setShouldRefetchList}) => {
         setCars(await response.json());
     }
 
-    return cars.map(car =>
-        <Card title={`${car.make} ${car.model}`} key={car.id} className='cars-list_card'>
-            <p>Registration: {car.registrationNumber}</p>
-        </Card>
-    )
+    return (
+        <div className="cars-list">
+            {
+                cars.map(car =>
+                <Card title={`${car.make} ${car.model}`} key={car.id} className='cars-list_card'>
+                    <p>Registration: {car.registrationNumber}</p>
+                </Card>
+            )}
+        </div>
+    );
+
 };
 
 export default CarsList;

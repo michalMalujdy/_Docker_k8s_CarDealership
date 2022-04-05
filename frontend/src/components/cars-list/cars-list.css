@@ -1,4 +1,11 @@
-﻿.cars-list_card {
-    margin-bottom: 20px;
+﻿.cars-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cars-list_card {
     width: 300px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 20px;
 }

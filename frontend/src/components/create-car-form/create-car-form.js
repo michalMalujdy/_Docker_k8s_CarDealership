@@ -20,7 +20,7 @@ const CreateCarForm = ({setShouldRefetchList}) => {
     return (
         <Form className="create-car-form">
             <Form.Item label="Make">
-                <Input placeholder="E.g. Ford" value={make} onChange={(e) => setMake(e.target.value)} />
+                <Input placeholder="E.g. Ford" value={make} onChange={e => setMake(e.target.value)} />
             </Form.Item>
             <Form.Item label="Model">
                 <Input placeholder="E.g. Mondeo" value={model} onChange={e => setModel(e.target.value)} />

@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-pod
+  labels:
+    component: frontend-pod
+spec:
+  containers:
+    - name: frontend
+      image: mmalujdy/car-dealership-frontend
+      ports:
+        - containerPort: 3000

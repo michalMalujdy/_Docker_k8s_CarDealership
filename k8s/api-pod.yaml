@@ -1,0 +1,17 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: api-pod
+  labels:
+    component: api-pod
+spec:
+  containers:
+    - name: api
+      image: mmalujdy/car-dealership-api
+      ports:
+        - containerPort: 5558
+      env:
+        - name: ASPNETCORE_URLS
+          value: "http://+:80"
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Production"

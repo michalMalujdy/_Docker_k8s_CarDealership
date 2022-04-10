@@ -2,11 +2,11 @@
 services:
   ms-sql-server:
     image: "mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04"
+    ports:
+      - "1434:1433"
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=1Secure*Password1
-    ports:
-      - "1434:1433"
   car-dealership-api:
     build: ./api
     ports:

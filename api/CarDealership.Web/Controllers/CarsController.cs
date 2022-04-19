@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CarDealership.Web.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class CarsController : ControllerBase
 {
     private readonly ISender _sender;

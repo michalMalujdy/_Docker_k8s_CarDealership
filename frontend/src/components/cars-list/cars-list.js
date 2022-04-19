@@ -18,7 +18,7 @@ const CarsList = ({shouldRefetchList, setShouldRefetchList}) => {
 
     const fetchCarsList = async () => {
         console.log()
-        const response = await fetch('http://localhost:5558/cars/list');
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/cars/list`);
         setCars(await response.json());
     }
 

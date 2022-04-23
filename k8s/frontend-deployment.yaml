@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: frontend-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       component: frontend
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: mmalujdy/car-dealership-frontend
+          image: mmalujdy/car-dealership-frontend:1.2
           ports:
             - containerPort: 3000

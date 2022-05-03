@@ -15,7 +15,7 @@ spec:
                 name: api-cluster-ip-service
                 port:
                   number: 80
-          - path: /
+          - path: /entry
             pathType: Prefix
             backend:
               service:

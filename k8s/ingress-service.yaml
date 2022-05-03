@@ -4,18 +4,20 @@ metadata:
   name: ingress-service
   annotations:
     kubernetes.io/ingress.class: azure/application-gateway
+    ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
     - http:
         paths:
-          - path: /
+          - path: /api
             pathType: Prefix
             backend:
               service:
                 name: api-cluster-ip-service
                 port:
                   number: 80
-          - path: /front
+          - path: /
             pathType: Prefix
             backend:
               service:

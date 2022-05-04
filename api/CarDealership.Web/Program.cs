@@ -7,8 +7,8 @@ var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<
 logger.LogInformation("App is starting");
 
 builder.Services.AddCore(builder.Configuration);
-
 builder.Services.AddControllers();
+builder.Services.AddHealthChecks();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -30,6 +30,7 @@ using (var db = builder.Services.BuildServiceProvider().GetRequiredService<Db>()
     DbInitializer.SeedDb(db, logger);
 }
 
+app.UseHealthChecks("/api/ready");
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseCors();

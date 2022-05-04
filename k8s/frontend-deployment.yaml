@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: mmalujdy/car-dealership-frontend:1.2
+          image: mmalujdy/car-dealership-frontend:1.3
           ports:
             - containerPort: 3000

@@ -18,6 +18,7 @@ builder.Services.AddCors(options =>
     {
         corsPolicyBuilder.WithOrigins("http://localhost:3000");
         corsPolicyBuilder.WithOrigins("http://localhost:5557");
+        corsPolicyBuilder.WithOrigins("http://car-dealership.mmalujdy.net");
         corsPolicyBuilder.WithHeaders("Content-Type");
     });
 });

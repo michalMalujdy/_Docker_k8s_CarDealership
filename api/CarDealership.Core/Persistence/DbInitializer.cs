@@ -1,4 +1,6 @@
-﻿using CarDealership.Core.Domain;
+﻿using CarDealership.Core.Application.Services;
+using CarDealership.Core.Application.Services.Abstraction;
+using CarDealership.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,9 +8,14 @@ using Microsoft.Extensions.Logging;
 
 namespace CarDealership.Core.Persistence;
 
-public static class DbInitializer
+public class DbInitializer : IDbInitializer
 {
-    public static void ConfigureDb<T>(IServiceCollection services, IConfiguration configuration, ILogger<T> logger)
+    private readonly IConnectionStringProvider _connectionStringProvider;
+
+    public DbInitializer(IConnectionStringProvider connectionStringProvider)
+        => _connectionStringProvider = connectionStringProvider;
+
+    public void ConfigureDb<T>(IServiceCollection services, IConfiguration configuration, ILogger<T> logger)
     {
         logger.LogInformation("Connecting to DB; {ConnectionString}", configuration.GetConnectionString("DefaultConnection"));
 
@@ -16,7 +23,7 @@ public static class DbInitializer
         {
             services.AddDbContext<Db>(options =>
                 options.UseSqlServer(
-                    configuration.GetConnectionString("DefaultConnection"),
+                    _connectionStringProvider.GetConnectionString(),
                     b => b.MigrationsAssembly(typeof(Db).Assembly.FullName)));
         }
         catch (Exception e)

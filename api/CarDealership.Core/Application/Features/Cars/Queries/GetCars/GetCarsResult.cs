@@ -1,4 +1,4 @@
-﻿namespace CarDealership.Core.Application.Cars.Queries.GetCars;
+﻿namespace CarDealership.Core.Application.Features.Cars.Queries.GetCars;
 
 public class GetCarsResult
 {

@@ -2,7 +2,7 @@
 using CarDealership.Core.Persistence;
 using MediatR;
 
-namespace CarDealership.Core.Application.Cars.Commands.CreateCar;
+namespace CarDealership.Core.Application.Features.Cars.Commands.CreateCar;
 
 public class CreateCarHandler : IRequestHandler<CreateCarCommand>
 {

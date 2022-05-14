@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarDealership.Core.Application.Cars.Queries.GetCars;
+namespace CarDealership.Core.Application.Features.Cars.Queries.GetCars;
 
 public class GetCarsHandler : IRequestHandler<GetCarsQuery, List<GetCarsResult>>
 {

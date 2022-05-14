@@ -1,5 +1,5 @@
-using CarDealership.Core.Application.Cars.Commands.CreateCar;
-using CarDealership.Core.Application.Cars.Queries.GetCars;
+using CarDealership.Core.Application.Features.Cars.Commands.CreateCar;
+using CarDealership.Core.Application.Features.Cars.Queries.GetCars;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

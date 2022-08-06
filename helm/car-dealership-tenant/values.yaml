@@ -1,0 +1,8 @@
+car-dealership:
+    deployment:
+        frontend:
+            tag: "1.5"
+        backend:
+            tag: "1.4"
+    env:
+        tenant: "kia"

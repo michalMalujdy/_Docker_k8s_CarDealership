@@ -1,5 +1,0 @@
-deployment:
-  frontend:
-    tag: "1.4"
-  backend:
-    tag: "1.4"

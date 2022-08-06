@@ -1,0 +1,4 @@
+﻿car-dealership:
+    env:
+        tenant: "toyota"
+        customFeatureToggle: "someToggleFromToyota"

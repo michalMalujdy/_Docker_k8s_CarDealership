@@ -6,14 +6,10 @@ namespace CarDealership.Core.Application.Services.Implementation;
 public class CurrentTenantProvider : ICurrentTenantProvider
 {
     private const string VariableName = "CAR_DEALERSHIP_CURRENT_TENANT";
-    private readonly IConfiguration _configuration;
-
-    public CurrentTenantProvider(IConfiguration configuration)
-        => _configuration = configuration;
 
     public string GetCurrentTenant()
     {
-        var currentTenant = Environment.GetEnvironmentVariable(VariableName) ?? _configuration["fallbackCurrentTenant"];
+        var currentTenant = Environment.GetEnvironmentVariable(VariableName);
 
         if (string.IsNullOrWhiteSpace(currentTenant))
         {

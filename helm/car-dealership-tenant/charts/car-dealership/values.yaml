@@ -1,0 +1,7 @@
+deployment:
+    frontend:
+        tag: ""
+    backend:
+        tag: ""
+env:
+    tenant: ""

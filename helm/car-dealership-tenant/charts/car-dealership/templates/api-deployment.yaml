@@ -14,13 +14,13 @@ spec:
         spec:
             containers:
                 -   name: api
-                    image: "mmalujdy/car-dealership-api:{{ .Values.deployment.backend.tag }}"
+                    image: "mmalujdy/car-dealership-api:{{ .Values.deployment.backendTag }}"
                     ports:
                         -   containerPort: 80
                     env:
                         - name: ASPNETCORE_URLS
                           value: "http://+:80"
                         - name: ASPNETCORE_ENVIRONMENT
-                          value: "Production"
+                          value: {{ .Values.env.envName }}
                         - name: CAR_DEALERSHIP_CURRENT_TENANT
                           value: {{ .Values.env.tenant }}

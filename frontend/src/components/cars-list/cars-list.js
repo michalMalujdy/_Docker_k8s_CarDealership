@@ -1,9 +1,11 @@
 ﻿import React, {useEffect, useState} from "react";
 import { Card } from 'antd';
 import './cars-list.css';
+import {useGetSettings} from "../../customHooks/useGetSettings";
 
 const CarsList = ({shouldRefetchList, setShouldRefetchList}) => {
     const [cars, setCars] = useState([]);
+    const {getBaseUrl} = useGetSettings();
 
     useEffect(async () => {
         await fetchCarsList();
@@ -17,8 +19,7 @@ const CarsList = ({shouldRefetchList, setShouldRefetchList}) => {
     }, [shouldRefetchList]);
 
     const fetchCarsList = async () => {
-        console.log()
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/cars/list`);
+        const response = await fetch(`${getBaseUrl()}/cars/list`);
         setCars(await response.json());
     }
 

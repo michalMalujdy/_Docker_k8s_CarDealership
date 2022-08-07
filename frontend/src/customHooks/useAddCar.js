@@ -1,6 +1,10 @@
-﻿export const useAddCar = (car) => {
-    const addCar = async () => {
-        await fetch(`${process.env.REACT_APP_API_BASE_URL}/cars`, {
+﻿import {useGetSettings} from "./useGetSettings";
+
+export const useAddCar = (car) => {
+    const useAddCar = async () => {
+        const {getBaseUrl} = useGetSettings();
+
+        await fetch(`${getBaseUrl()}/cars`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -10,5 +14,5 @@
         });
     };
 
-    return {addCar};
+    return { useAddCar };
 }

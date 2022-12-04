@@ -3,4 +3,4 @@ car-dealership:
         frontendTag: "1.4"
         backendTag: "1.4"
     env:
-        tenant: "kia"
+        tenant: ""

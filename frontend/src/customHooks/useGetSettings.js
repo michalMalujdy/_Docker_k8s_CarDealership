@@ -1,8 +1,5 @@
-﻿//require('dotenv').config({ path: `.env.${process.env.NODE_ENV ?? 'development'}` })
-
-export const useGetSettings = () => {
-    //console.log('Env: ', process.env.NODE_ENV)
-    const getBaseUrl = () => "http://localhost:5080/api"
+﻿export const useGetSettings = () => {
+    const getBaseUrl = () => process.env.REACT_APP_API_BASE_URL;
 
     return { getBaseUrl };
 };

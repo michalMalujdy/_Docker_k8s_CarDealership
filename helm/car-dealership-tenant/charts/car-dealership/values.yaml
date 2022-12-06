@@ -1,9 +1,0 @@
-car-dealership:
-    app:
-        name: "car-dealership"
-    deployment:
-        frontendTag: ""
-        backendTag: ""
-    env:
-        name: ""
-        tenant: ""

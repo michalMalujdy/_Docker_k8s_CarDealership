@@ -1,4 +1,0 @@
-﻿car-dealership:
-    env:
-        tenant: "renault"
-        customFeatureToggle: "someToggleFromRenault"

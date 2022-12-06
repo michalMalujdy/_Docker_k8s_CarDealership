@@ -39,22 +39,11 @@ kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 
 ```
 
 ## Helm
-### Test template without tenant overrides
-```
-cd helm
-helm install --generate-name --dry-run --debug car-dealership-tenant
-```
 
-### Test template with tenant overrides
+### Test template
 ```
 cd helm
-helm install --dry-run --generate-name --debug car-dealership-tenant -f ./car-dealership-tenant/charts/car-dealership/values.yaml -f ./car-dealership-tenant/charts/car-dealership/values.local-k8s.yaml -f ./car-dealership-tenant/values.yaml  -f ./car-dealership-tenant/values.renault.yaml
-```
-
-### Test subchart template
-```
-cd helm
-helm install --generate-name --dry-run --debug ./car-dealership-tenant/charts/car-dealership
+helm install --dry-run --generate-name --debug car-dealership -f ./car-dealership/values.yaml -f ./car-dealership/values/envs/values.local-k8s.yaml -f ./car-dealership/values/tenants/values.yaml -f ./car-dealership/values/tenants/values.renault.yaml
 ```
 
 ### Install chart

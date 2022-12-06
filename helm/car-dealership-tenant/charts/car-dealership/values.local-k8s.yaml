@@ -1,2 +1,3 @@
-﻿env:
-    envName: "local-k8s"
+﻿car-dealership:
+    env:
+        name: "local-k8s"

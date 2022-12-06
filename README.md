@@ -48,7 +48,7 @@ helm install --generate-name --dry-run --debug car-dealership-tenant
 ### Test template with tenant overrides
 ```
 cd helm
-helm install --generate-name --dry-run --debug car-dealership-tenant -f ./car-dealership-tenant/values.renault.yaml
+helm install --dry-run --generate-name --debug car-dealership-tenant -f ./car-dealership-tenant/charts/car-dealership/values.yaml -f ./car-dealership-tenant/charts/car-dealership/values.local-k8s.yaml -f ./car-dealership-tenant/values.yaml  -f ./car-dealership-tenant/values.renault.yaml
 ```
 
 ### Test subchart template
@@ -60,7 +60,7 @@ helm install --generate-name --dry-run --debug ./car-dealership-tenant/charts/ca
 ### Install chart
 ```
 cd helm
-helm upgrade car-dealership-renault car-dealership-tenant --namespace car-dealership --create-namespace -f ./car-dealership-tenant/values.yaml  -f ./car-dealership-tenant/values.renault.yaml --atomic --timeout 3m --debug --install 
+helm upgrade car-dealership-renault car-dealership-tenant --namespace car-dealership --create-namespace -f ./car-dealership-tenant/charts/car-dealership/values.yaml -f ./car-dealership-tenant/charts/car-dealership/values.local-k8s.yaml -f ./car-dealership-tenant/values.yaml  -f ./car-dealership-tenant/values.renault.yaml --atomic --timeout 3m --debug --install 
 ```
 
 ### Clean up k8s cluster from all resources from this repo

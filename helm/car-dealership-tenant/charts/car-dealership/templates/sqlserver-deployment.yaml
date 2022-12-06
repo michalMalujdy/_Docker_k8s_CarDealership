@@ -1,19 +1,19 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sqlserver-deployment
+  name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-sqlserver-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: sqlserver
+      component: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-sqlserver
   template:
     metadata:
       labels:
-        component: sqlserver
+        component: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-sqlserver
     spec:
       containers:
-        - name: sqlserver
+        - name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-sqlserver
           image: mcr.microsoft.com/mssql/server:2019-CU15-ubuntu-20.04
           ports:
             - containerPort: 1433

@@ -1,11 +1,11 @@
 ﻿apiVersion: v1
 kind: Service
 metadata:
-  name: sqlserver-cluster-ip-service
+  name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-sqlserver-cluster-ip-service
 spec:
   type: ClusterIP
   selector:
-    component: sqlserver
+    component: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-sqlserver
   ports:
     - port: 1433
       targetPort: 1433

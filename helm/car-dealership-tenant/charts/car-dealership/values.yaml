@@ -1,6 +1,9 @@
-deployment:
-    frontendTag: ""
-    backendTag: ""
-env:
-    envName: ""
-    tenant: ""
+car-dealership:
+    app:
+        name: "car-dealership"
+    deployment:
+        frontendTag: ""
+        backendTag: ""
+    env:
+        name: ""
+        tenant: ""

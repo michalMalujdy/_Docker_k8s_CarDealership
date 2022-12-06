@@ -1,11 +1,11 @@
 ﻿apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-cluster-ip-service
+  name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-frontend-cluster-ip-service
 spec:
   type: ClusterIP
   selector:
-    component: frontend
+    component: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-frontend
   ports:
     - port: 80
       targetPort: 80

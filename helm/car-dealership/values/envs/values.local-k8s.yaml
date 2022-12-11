@@ -1,2 +1,5 @@
 ﻿env:
     name: "local-k8s"
+    tenants:
+        - "renault"
+        - "toyota"

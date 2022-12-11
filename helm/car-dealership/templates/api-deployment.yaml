@@ -1,26 +1,29 @@
-﻿apiVersion: apps/v1
+﻿{{- range $.Values.env.tenants }}
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-api-deployment
+    name: {{ $.Values.env.name }}-{{ $.Values.app.name }}-{{ . }}-api-deployment
 spec:
     replicas: 1
     selector:
         matchLabels:
-            component: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-api
+            component: {{ $.Values.env.name }}-{{ $.Values.app.name }}-{{ . }}-api
     template:
         metadata:
             labels:
-                component: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-api
+                component: {{ $.Values.env.name }}-{{ $.Values.app.name }}-{{ . }}-api
         spec:
             containers:
-                -   name: {{ .Values.env.name }}-{{ .Values.env.name }}-{{ .Values.env.tenant }}-api
-                    image: "mmalujdy/car-dealership-api:{{ .Values.deployment.backendTag }}"
+                -   name: {{ $.Values.env.name }}-{{ $.Values.app.name }}-{{ . }}-api
+                    image: "mmalujdy/car-dealership-api:{{ $.Values.deployment.backendTag }}"
                     ports:
                         -   containerPort: 80
                     env:
                         - name: ASPNETCORE_URLS
                           value: "http://+:80"
                         - name: ASPNETCORE_ENVIRONMENT
-                          value: {{ .Values.env.name }}
+                          value: {{ $.Values.env.name }}
                         - name: CAR_DEALERSHIP_CURRENT_TENANT
-                          value: {{ .Values.env.tenant }}
+                          value: {{ $.Values.env.tenant }}
+---
+{{- end}}

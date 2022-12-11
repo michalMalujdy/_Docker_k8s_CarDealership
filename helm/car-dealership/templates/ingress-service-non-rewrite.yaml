@@ -1,7 +1,7 @@
 ﻿apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-ingress-service-non-rewrite
+    name: {{ .Values.env.name }}-{{ .Values.app.name }}-ingress-service-non-rewrite
     annotations:
         ingress.kubernetes.io/ssl-redirect: "false"
         nginx.ingress.kubernetes.io/ssl-redirect: "false"
@@ -17,11 +17,13 @@ spec:
                                 name: {{ .Values.env.name }}-{{ .Values.app.name }}-frontend-cluster-ip-service
                                 port:
                                     number: 80
-                    -   path: /{{ .Values.env.tenant }}/api(.*)
+                    {{- range $.Values.env.tenants }}
+                    -   path: /{{ . }}/api(.*)
                         pathType: Prefix
                         backend:
                             service:
-                                name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-api-cluster-ip-service
+                                name: {{ $.Values.env.name }}-{{ $.Values.app.name }}-{{ . }}-api-cluster-ip-service
                                 port:
                                     number: 80
+                    {{- end}}
     ingressClassName: nginx

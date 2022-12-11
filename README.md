@@ -43,7 +43,7 @@ kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 
 ### Test template
 ```
 cd helm
-helm install --dry-run --generate-name --debug car-dealership -f ./car-dealership/values.yaml -f ./car-dealership/values/envs/values.local-k8s.yaml -f ./car-dealership/values/tenants/values.yaml -f ./car-dealership/values/tenants/values.renault.yaml
+helm install --dry-run --generate-name --debug car-dealership -f ./car-dealership/values.yaml -f ./car-dealership/values/tenants/values.yaml -f ./car-dealership/values/envs/values.local-k8s.yaml
 ```
 
 ### Install chart
@@ -51,6 +51,9 @@ helm install --dry-run --generate-name --debug car-dealership -f ./car-dealershi
 cd helm
 helm upgrade car-dealership-renault car-dealership --namespace car-dealership --create-namespace --atomic --timeout 5m --debug --install -f ./car-dealership/values.yaml -f ./car-dealership/values/envs/values.local-k8s.yaml -f ./car-dealership/values/tenants/values.yaml -f ./car-dealership/values/tenants/values.renault.yaml 
 helm upgrade car-dealership-toyota car-dealership --namespace car-dealership --create-namespace --atomic --timeout 5m --debug --install -f ./car-dealership/values.yaml -f ./car-dealership/values/envs/values.local-k8s.yaml -f ./car-dealership/values/tenants/values.yaml -f ./car-dealership/values/tenants/values.toyota.yaml 
+
+helm upgrade car-dealership-renault car-dealership --namespace car-dealership --create-namespace --atomic --timeout 5m --debug --install -f ./car-dealership/values.yaml -f ./car-dealership/values/tenants/values.yaml -f ./car-dealership/values/envs/values.local-k8s.yaml
+
 ``` 
 
 ### Clean up k8s cluster from all resources from this repo

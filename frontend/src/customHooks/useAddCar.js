@@ -1,10 +1,11 @@
 ﻿import {useGetSettings} from "./useGetSettings";
 
 export const useAddCar = (car) => {
-    const useAddCar = async () => {
-        const {getBaseUrl} = useGetSettings();
+    const {getBaseUrl} = useGetSettings();
+    const baseUrl = getBaseUrl();
 
-        await fetch(`${getBaseUrl()}/cars`, {
+    const addCar = async () => {
+        await fetch(`${baseUrl}/cars`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -14,5 +15,5 @@ export const useAddCar = (car) => {
         });
     };
 
-    return { useAddCar };
+    return { addCar };
 }

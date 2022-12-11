@@ -24,6 +24,6 @@ spec:
                         - name: ASPNETCORE_ENVIRONMENT
                           value: {{ $.Values.env.name }}
                         - name: CAR_DEALERSHIP_CURRENT_TENANT
-                          value: {{ $.Values.env.tenant }}
+                          value: {{ . }}
 ---
 {{- end}}

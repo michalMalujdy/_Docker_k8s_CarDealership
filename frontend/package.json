@@ -15,7 +15,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-app-env --env-file=src/envs/development.env start",
+    "start": "react-app-env --env-file=src/envs/dev.env start",
     "start:dev-k8s": "react-app-env --env-file=src/envs/dev-k8s.env start",
     "start:dev-compose": "react-app-env --env-file=src/envs/dev-compose.env start",
     "build": "cross-env-shell react-app-env --env-file=src/envs/${BUILD_ENV}.env build",

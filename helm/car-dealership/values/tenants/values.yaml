@@ -1,5 +1,5 @@
 deployment:
     frontendTag: "1.6"
-    backendTag: "1.6"
+    backendTag: "1.11"
 env:
     tenant: ""

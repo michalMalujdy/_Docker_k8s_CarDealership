@@ -1,22 +1,20 @@
 ﻿apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-ingress-service
+    name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-api-ingress-service
     annotations:
-        #    kubernetes.io/ingress.class: azure/application-gateway
         ingress.kubernetes.io/ssl-redirect: "false"
         nginx.ingress.kubernetes.io/ssl-redirect: "false"
         nginx.ingress.kubernetes.io/use-regex: "true"
-        nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
     rules:
         -   http:
                 paths:
-                    -   path: /(.*)
+                    -   path: /{{ .Values.env.tenant }}/api(.*)
                         pathType: Prefix
                         backend:
                             service:
-                                name: {{ .Values.env.name }}-{{ .Values.app.name }}-frontend-cluster-ip-service
+                                name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-api-cluster-ip-service
                                 port:
                                     number: 80
     ingressClassName: nginx

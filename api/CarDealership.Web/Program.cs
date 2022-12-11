@@ -1,5 +1,6 @@
 using CarDealership.Core;
 using CarDealership.Core.Persistence;
+using Microsoft.AspNetCore.Rewrite;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ using (var db = builder.Services.BuildServiceProvider().GetRequiredService<Db>()
     DbInitializer.RunMigrations(db, logger);
     DbInitializer.SeedDb(db, logger);
 }
+
+app.UseRewriter(new RewriteOptions().AddRewrite("(.*)/api/ready", "/api/ready", true));
 
 app.UseHealthChecks("/api/ready");
 app.UseSwagger();

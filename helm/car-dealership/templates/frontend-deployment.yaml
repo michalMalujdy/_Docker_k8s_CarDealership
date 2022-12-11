@@ -1,19 +1,19 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-frontend-deployment
+    name: {{ .Values.env.name }}-{{ .Values.app.name }}-frontend-deployment
 spec:
     replicas: 1
     selector:
         matchLabels:
-            component: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-frontend
+            component: {{ .Values.env.name }}-{{ .Values.app.name }}-frontend
     template:
         metadata:
             labels:
-                component: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-frontend
+                component: {{ .Values.env.name }}-{{ .Values.app.name }}-frontend
         spec:
             containers:
-                -   name: {{ .Values.env.name }}-{{ .Values.app.name }}-{{ .Values.env.tenant }}-frontend
+                -   name: {{ .Values.env.name }}-{{ .Values.app.name }}-frontend
                     image: "mmalujdy/car-dealership-frontend:{{ .Values.deployment.frontendTag }}"
                     ports:
                         -   containerPort: 3000

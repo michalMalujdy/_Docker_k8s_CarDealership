@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace CarDealership.Web.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
 public class CarsController : ControllerBase
 {
     private readonly ISender _sender;
@@ -14,11 +13,11 @@ public class CarsController : ControllerBase
     public CarsController(ISender sender)
         => _sender = sender;
 
-    [HttpPost]
+    [HttpPost("{tenant}/api/cars")]
     public async Task CreateCar([FromBody] CreateCarCommand command)
         => await _sender.Send(command);
 
-    [HttpGet("list")]
+    [HttpGet("{tenant}/api/cars/list")]
     public async Task<List<GetCarsResult>> GetCars()
         => await _sender.Send(new GetCarsQuery());
 }

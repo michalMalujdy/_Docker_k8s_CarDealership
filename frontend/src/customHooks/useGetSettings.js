@@ -1,5 +1,5 @@
 ﻿export const useGetSettings = () => {
-    const getBaseUrl = () => process.env.REACT_APP_API_BASE_URL;
+    const getBaseUrl = () => `/${window.location.pathname.split('/')[1]}/api`;
 
     return { getBaseUrl };
 };

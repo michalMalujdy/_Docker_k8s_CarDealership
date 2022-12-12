@@ -1,7 +1,12 @@
-﻿# Car Dealership - Docker, Kubernetes and Helm demo
+﻿# Car Dealership - Docker, Kubernetes and Helm demo`
 
 ## Overview
+An multitenant application created for educational purposes representing a simple software for a car dealership that consists of a frontend, backend and SQL persistence.
 
+### Graphical overview of the system
+
+<img src="general_diagram.png" width="1000px"/>
+`
 ## Acheived goals
 - Hands on experience with Docker
 - Hands on experience with docker-compose
@@ -11,6 +16,7 @@
 - The docker-compose.yaml file created to setup local development environment easily
 - The system was hosted on Kubernetes with use of deployments and service IP
 - Ingress installed and configured
+- The system has variable number of environments and tenants per each environment easily configurable through the yaml files located under /helm/car-dealership/values.
 
 ## Technology stack
 - Docker 20.10

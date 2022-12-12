@@ -20,7 +20,6 @@
     "start:dev-compose": "react-app-env --env-file=src/envs/dev-compose.env start",
     "build": "cross-env-shell react-app-env --env-file=src/envs/${BUILD_ENV}.env build",
     "build:dev-k8s": "cross-env BUILD_ENV=dev-k8s yarn build",
-    "build:production": "cross-env BUILD_ENV=prod yarn build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

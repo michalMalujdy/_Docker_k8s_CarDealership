@@ -6,7 +6,7 @@ An multitenant application created for educational purposes representing a simpl
 ### Graphical overview of the system
 
 <img src="general_diagram.png" width="1000px"/>
-`
+
 ## Acheived goals
 - Hands on experience with Docker
 - Hands on experience with docker-compose

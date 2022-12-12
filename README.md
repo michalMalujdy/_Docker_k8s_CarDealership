@@ -1,4 +1,4 @@
-﻿# Car Dealership - Docker, Kubernetes and Helm demo`
+﻿# Car Dealership - Docker, Kubernetes and Helm demo
 
 ## Overview
 An multitenant application created for educational purposes representing a simple software for a car dealership that consists of a frontend, backend and SQL persistence.

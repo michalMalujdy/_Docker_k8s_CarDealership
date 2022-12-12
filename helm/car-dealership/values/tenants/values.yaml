@@ -1,6 +1,0 @@
-deployment:
-    frontendTag: "1.11"
-    backendTag: "1.12"
-env:
-    name: ""
-    tenants: []

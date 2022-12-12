@@ -14,7 +14,7 @@ spec:
         spec:
             containers:
                 -   name: {{ .Values.env.name }}-{{ .Values.app.name }}-frontend
-                    image: "mmalujdy/car-dealership-frontend:{{ .Values.deployment.frontendTag }}"
+                    image: "mmalujdy/car-dealership-frontend:{{ .Values.app.frontendTag }}"
                     ports:
                         -   containerPort: 3000
                     env:

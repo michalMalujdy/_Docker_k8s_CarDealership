@@ -15,7 +15,7 @@ spec:
         spec:
             containers:
                 -   name: {{ $.Values.env.name }}-{{ $.Values.app.name }}-{{ . }}-api
-                    image: "mmalujdy/car-dealership-api:{{ $.Values.deployment.backendTag }}"
+                    image: "mmalujdy/car-dealership-api:{{ $.Values.app.backendTag }}"
                     ports:
                         -   containerPort: 80
                     env:

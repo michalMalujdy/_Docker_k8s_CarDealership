@@ -1,0 +1,4 @@
+app:
+    name: "car-dealership"
+    frontendTag: "1.11"
+    backendTag: "1.12"
